@@ -12,11 +12,11 @@ def blockage_pipeline(image_path):
     grayscale_image = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
     
     # brighten the image
-    grayscale_image = cv.convertScaleAbs(grayscale_image, alpha=1.25, beta=15)
+    grayscale_image = cv.convertScaleAbs(grayscale_image, alpha=1.5, beta=20)
     
     # show the grayscale image
     cv.imshow("Grayscale Image", grayscale_image)
-    cv.waitKey(0)
+    cv.waitKey(0)   
     
     # pseudocolor the image
     pseudocolored_image = cv.applyColorMap(grayscale_image, cv.COLORMAP_JET)
@@ -25,14 +25,21 @@ def blockage_pipeline(image_path):
     cv.imshow("Pseudocolored Image", pseudocolored_image)
     cv.waitKey(0)
     
-    # detect dark blue regions (potential blockages)
-    lower_blue = (100, 0, 0)
-    upper_blue = (255, 100, 100)
+    # detect light blue regions (potential blockages)
+    lower_blue = (200, 150, 0)
+    upper_blue = (255, 255, 150)
     mask = cv.inRange(pseudocolored_image, lower_blue, upper_blue)
+    
+    # show the mask image
+    cv.imshow("Mask Image", mask)
+    cv.waitKey(0)
     
     # find contours of the masked regions
     contours, _ = cv.findContours(mask, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
     cv.drawContours(image = img, contours = contours, contourIdx = -1, color = (0, 255, 0), thickness = 2)
+    
+    # remove really small contours and really large contours
+    contours = [cnt for cnt in contours if 500 < cv.contourArea(cnt) < 1000]
     
     # redraw found contours on original image
     cv.drawContours(image = img, contours = contours, contourIdx = -1, color = (0, 255, 0), thickness = 2)
