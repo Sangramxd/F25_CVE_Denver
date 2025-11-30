@@ -1,6 +1,11 @@
 import cv2 as cv
-
-def blockage_pipeline(image_path):
+import os
+    
+def blockage_pipeline(image_path, save_folder):
+    
+    # create folder to save results if it doesn't exist
+    if not os.path.exists(save_folder):
+        os.makedirs(save_folder)
     
     # load the image
     img = cv.imread(image_path)
@@ -16,10 +21,14 @@ def blockage_pipeline(image_path):
     
     # show the grayscale image
     cv.imshow("Grayscale Image", grayscale_image)
-    cv.waitKey(0)   
+    cv.waitKey(0)
     
     # pseudocolor the image
     pseudocolored_image = cv.applyColorMap(grayscale_image, cv.COLORMAP_JET)
+    
+    # Save the pseudocolored image
+    pseudocolor_output_path = os.path.join(save_folder, image_path.replace('.png', '_pseudocolored.png'))
+    cv.imwrite(pseudocolor_output_path, pseudocolored_image)
     
     # show the pseudocolored image
     cv.imshow("Pseudocolored Image", pseudocolored_image)
@@ -34,6 +43,10 @@ def blockage_pipeline(image_path):
     cv.imshow("Mask Image", mask)
     cv.waitKey(0)
     
+    # Save the mask image
+    mask_output_path = os.path.join(save_folder, image_path.replace('.png', '_mask.png'))
+    cv.imwrite(mask_output_path, mask)
+    
     # find contours of the masked regions
     contours, _ = cv.findContours(mask, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE)
     cv.drawContours(image = img, contours = contours, contourIdx = -1, color = (0, 255, 0), thickness = 2)
@@ -44,8 +57,10 @@ def blockage_pipeline(image_path):
     # redraw found contours on original image
     cv.drawContours(image = img, contours = contours, contourIdx = -1, color = (0, 255, 0), thickness = 2)
     
+
+    
     # save the final image with detected blockages
-    output_path = image_path.replace('.png', '_blockages_detected.png')
+    output_path = os.path.join(save_folder, image_path.replace('.png', '_blockages_detected.png'))
     cv.imwrite(output_path, img)
     
     # show the final image with detected blockages
@@ -55,6 +70,6 @@ def blockage_pipeline(image_path):
 
 # Example usage
 if __name__ == "__main__":
-    blockage_pipeline("Angiogram_1.png")
-    blockage_pipeline("Angiogram_2.png")
-    blockage_pipeline("Angiogram_3.png")
+    blockage_pipeline("Angiogram_1.png", "Angiogram_1_output")
+    blockage_pipeline("Angiogram_2.png", "Angiogram_2_output")
+    blockage_pipeline("Angiogram_3.png", "Angiogram_3_output")
