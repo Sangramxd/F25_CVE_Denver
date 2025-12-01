@@ -1,0 +1,4 @@
+image,num_stenoses,max_stenosis_pct,overlay_path,analysis_csv
+Angiogram_1.png,3,66.66666672222222,advanced_output/Angiogram_1_overlay.png,advanced_output/Angiogram_1_analysis.csv
+Angiogram_2.png,3,80.71308770493096,advanced_output/Angiogram_2_overlay.png,advanced_output/Angiogram_2_analysis.csv
+Angiogram_3.png,3,72.26499022720007,advanced_output/Angiogram_3_overlay.png,advanced_output/Angiogram_3_analysis.csv
