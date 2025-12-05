@@ -128,6 +128,16 @@ cd F25_CVE_Denver
  
 To inspect a particular branch:  
 git checkout #Sangram / Shweta/ Rajiv/ Vrishabh
+
+To run the whole folder of Images
+python stenosis_centerline_batch.py 
+    --in "D:\Work\CV\Project\Data" 
+    --out "D:\Work\CV\Project\Out_all" 
+    --px 0.22 
+    --pattern "*.png" 
+    --recursive 
+    --workers 6 
+    --debug_plot
 ```
 
 ## 5. Python Environment
