@@ -135,7 +135,7 @@ git checkout #Sangram / Shweta/ Rajiv/ Vrishabh
 Install dependencies (example using pip):
 ```bash
 pip install numpy pandas opencv-python scikit-image scipy matplotlib networkx
-
+```
 ## 6. Acknowledgements
 
 This project was developed as part of the F25 Computer Vision (CVE) course.
