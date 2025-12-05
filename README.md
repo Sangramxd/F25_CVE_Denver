@@ -128,7 +128,7 @@ cd F25_CVE_Denver
  
 To inspect a particular branch:  
 git checkout #Sangram / Shweta/ Rajiv/ Vrishabh
-
+```
 
 ## 5. Python Environment
 
