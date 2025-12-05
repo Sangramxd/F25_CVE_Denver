@@ -128,3 +128,10 @@ cd F25_CVE_Denver
  
 To inspect a particular branch:  
 git checkout #Sangram / Shweta/ Rajiv/ Vrishabh
+
+
+## 5. Python Environment
+
+Install dependencies (example using pip):
+```bash
+pip install numpy pandas opencv-python scikit-image scipy matplotlib networkx
