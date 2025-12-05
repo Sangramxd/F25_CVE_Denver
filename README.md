@@ -15,16 +15,6 @@ The goal is to build a **clinical-grade pipeline** that:
 
 ## 1. Project Overview
 
-Coronary stenosis (narrowing of arteries) is usually quantified using the **% Diameter Stenosis** metric:
-
-\[
-\%DS = \left(1 - \frac{D_{\text{stenosis}}}{D_{\text{ref}}}\right) \times 100\%
-\]
-
-where:
-
-- \( D_{\text{stenosis}} \) is the minimum lumen diameter at the lesion
-- \( D_{\text{ref}} \) is a rolling “healthy” reference diameter upstream
 
 This project implements an automated pipeline to:
 
@@ -124,7 +114,7 @@ This project implements an automated pipeline to:
   - `Angiogram_*bin*.png`  
     Example binarized outputs for different thresholds / configurations.
 
-> Each branch represents individual contributions and experiments. The final consolidated pipeline is mostly reflected in the `Sangram` and `Vrishabh` branches.
+> Each branch represents individual contributions and experiments. The final consolidated pipeline is mostly reflected in the Local system implementation.
 
 ---
 
@@ -135,4 +125,6 @@ This project implements an automated pipeline to:
 ```bash
 git clone https://github.com/Sangramxd/F25_CVE_Denver.git
 cd F25_CVE_Denver
-
+ 
+To inspect a particular branch:  
+git checkout #Sangram / Shweta/ Rajiv/ Vrishabh
